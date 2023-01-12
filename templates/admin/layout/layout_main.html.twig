@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+    Admin Panel - {% block title_detailed %} | Go Review{% endblock %}
+{% endblock %}
+
+{% block layout_body %}
+    <body id="page-top">
+    <div id="wrapper">
+
+        {{ include('admin/parts/menu/side_bar.html.twig') }}
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+
+                {{ include('admin/parts/menu/top_bar.html.twig') }}
+
+                <div class="container-fluid">
+                    {% include 'admin/parts/warning/flash_message.html.twig' %}
+
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Go Review</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% block javascripts %}{% endblock %}
+    </body>
+{% endblock %}

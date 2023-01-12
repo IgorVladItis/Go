@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <button class="mobile-menu-toggler" id="mobile_menu_toggler">
+        <i class="fas fa-bars"></i>
+    </button>
+<style>
+    .logotype img{
+        width:55%;
+    }
+</style>
+    <a href="#" class="logotype" style="height: 8.5%; width: 8.5%;">
+        <img class="logo" src="{{ asset('StylesImgs/images/banner/collection/stone_logo.jpg') }}" alt="Logotype">
+    </a>
+
+    <nav class="main-nav">
+        <ul class="menu">
+            <li class="menu-item">
+                <a href="{{ path('app_game') }}">
+                    <div>Главная</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ path('app_game') }}">
+                    <div>Игры</div>
+                </a>
+            </li>
+{#            <li class="menu-item">#}
+{#                <a href="#">#}
+{#                    <div>{{ 'Задачи'|trans }}</div>#}
+{#                </a>#}
+{#            </li>#}
+            <li class="menu-item">
+                <a href="#">
+                    <div>Сообщества</div>
+                </a>
+            </li>
+            <li class="menu-item font-weight-bold">
+                <a href="{{ path('main_login') }}">
+                    <div>Войти</div>
+                </a>
+            </li>
+            <li class="menu-item font-weight-bold">
+                <a href="{{ path('main_registration') }}">
+                    <div>Зарегистрироваться</div>
+                </a>
+            </li>
+            <li class="menu-item font-weight-bold">
+                <a href="{{ path('main_profile_index') }}">
+                    <div>Профиль</div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

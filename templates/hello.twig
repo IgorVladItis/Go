@@ -1,0 +1,22 @@
+% extends "main/base.html.twig" %}
+
+    {% block body %}
+
+
+    {#
+        {% apply upper %}{{ _self }}, {{ world['0'] | capitalize }} {% endapply %}
+    #}
+
+    <ul>
+        {% for i in range( low=1, high=10,step= 1) %}
+            <li>
+                {% if i>4 and i<7 %}
+                    <b> {{ i }}</b>
+                {% else %}
+                    {{ i }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% block goodbye %} Good Bye! {% endblock %}
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>{% block title %}Go Review{% endblock %}</title>
+{#    <meta name="keywords" content="{% block page_keywords %}clothes, jackets, jeans{% endblock %}">#}
+{#    <meta name="description" content="{% block page_description %}clothes, jackets, jeans{% endblock %}">#}
+    <link rel="icon" type="image/x-icon" href="{{ asset('StylesImgs/images/icons/favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('StylesImgs/styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+<div class="page-wrapper">
+
+    {% include 'main/parts/_header.html.twig' %}
+
+    <main class="main">
+        {% include '/main/parts/_error_message.html.twig' %}
+        {% block body %}
+        {% endblock %}
+    </main>
+
+    {% include 'main/parts/_footer.html.twig' %}
+</div>
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>

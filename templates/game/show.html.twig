@@ -1,0 +1,150 @@
+{% extends 'main/base.html.twig' %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            background-image: url("{{asset('StylesImgs/images/goBoard.png')}}");
+            background-size: cover;
+            height: 40rem;
+            width: 40rem;
+        }
+
+        .stone {
+            width: 1rem;
+            font-size: 0.1rem;
+            border-radius: 2rem;
+            height: 1rem;
+            padding: 0.825rem;
+            margin: 0 0.045rem;
+
+        }
+
+        .stone-b {
+            background-color: black !important;
+        }
+
+        .stone-w {
+            background-color: white !important;
+        }
+
+        .stone-t {
+            background-color: transparent;
+        }
+
+        .board {
+            padding: 2.37rem;
+        }
+
+        .stoneLine {
+            height: 1.855rem;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <div class="board">
+
+            {% for x in 1..19 %}
+                <div class="stoneLine">
+                    {% for y in 1..19 %}
+                        <span class="stone stone-{{ co[y][x] }}"
+                              data-coord="{{ 361 - ((19 - y) + 19 * (x-1)) }}"> . </span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% set lastMove = moves|last %}
+    <button class="previous" data-last="{{ lastMove.id }}">Назад</button>
+    <button class="next" data-last="{{ lastMove.id }}">Вперед</button>
+    <script>
+        $(document).on('click', '.stone', function () {
+            that = $(this);
+            coord = $(this).attr("data-coord");
+            var pathname = window.location.pathname;
+
+            game_id = pathname.split("/")[2];
+            $.ajax({
+                url: '{{ (path('app_moves_new')) }}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "coord": coord,
+                    "game_id": game_id,
+                },
+                async: true,
+                success: function (data) {
+                    console.log(data.color);
+                    if (data.color === undefined) {
+
+                    } else {
+                        if (data.color == 'B') {
+                            $('.stone[data-coord = "' + coord + '"]').addClass("stone-b");
+                        } else {
+                            $('.stone[data-coord = "' + coord + '"]').addClass("stone-w");
+                        }
+                    }
+                    //$('div#ajax-results').html(data.output);
+
+                }
+            });
+            return false;
+
+        });
+        $(document).on('click', '.previous', function () {
+            that = $(this);
+            current = $(this).attr("data-last");
+            var pathname = window.location.pathname;
+
+            game_id = pathname.split("/")[2];
+            $.ajax({
+                url: '{{ (path('app_moves_previous')) }}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "current": current,
+                    "game_id": game_id,
+                },
+                async: true,
+                success: function (data) {
+                    console.log(data);
+                    $('.stone[data-coord = "' + data.current + '"]').removeClass("stone-b").removeClass("stone-w");
+                    $('.previous').attr("data-last", data.id);
+                    $('.next').attr("data-last", data.id);
+                }
+            });
+            return false;
+        });
+        $(document).on('click', '.next', function () {
+            that = $(this);
+            current = $(this).attr("data-last");
+            var pathname = window.location.pathname;
+
+            game_id = pathname.split("/")[2];
+            $.ajax({
+                url: '{{ (path('app_moves_next')) }}',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "current": current,
+                    "game_id": game_id,
+                },
+                async: true,
+                success: function (data) {
+                    console.log(data);
+                    $('.previous').attr("data-last", data.id);
+                    $('.next').attr("data-last", data.id);
+                    if (data.color === undefined) {
+
+                    } else {
+                        if (data.color == 'B') {
+                            $('.stone[data-coord = "' + data.next + '"]').addClass("stone-b");
+                        } else {
+                            $('.stone[data-coord = "' + data.next + '"]').addClass("stone-w");
+                        }
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
+{% endblock %}

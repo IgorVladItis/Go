@@ -1,0 +1,138 @@
+{% extends 'admin/layout/layout_main.html.twig' %}
+
+{% block title_detailed %} Edit User {% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <a href="{{ path('admin_user_list') }}" class="font-weight-bold text-primary">Users</a>
+                    <div class="ml-2 mr-2">/</div>
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        {% if user.id %}
+                            Edit
+                        {% else %}
+                            Add new
+                        {% endif %}
+                    </h6>
+                </div>
+                <a href="{{ path("admin_user_add") }}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
+                    <i class="fas fa-plus fa-sm text-white-50"></i>Add new
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            {{ form_start(form) }}
+            <div class="form-group row">
+                <div class="col-md-1">
+                    Email
+                </div>
+                <div class="col-md-11">
+                    {{ user.email }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    {{ form_label(form.plainPassword) }}
+                </div>
+                <div class="col-md-11">
+                    {{ form_widget(form.plainPassword) }}
+                    <div class="form-error">
+                        {{ form_errors(form.plainPassword) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    {{ form_label(form.fullName) }}
+                </div>
+                <div class="col-md-11">
+                    {{ form_widget(form.fullName) }}
+                    <div class="form-error">
+                        {{ form_errors(form.fullName) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    {{ form_label(form.phone) }}
+                </div>
+                <div class="col-md-11">
+                    {{ form_widget(form.phone) }}
+                    <div class="form-error">
+                        {{ form_errors(form.phone) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    {{ form_label(form.address) }}
+                </div>
+                <div class="col-md-11">
+                    {{ form_widget(form.address) }}
+                    <div class="form-error">
+                        {{ form_errors(form.address) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    {{ form_label(form.postIndex) }}
+                </div>
+                <div class="col-md-11">
+                    {{ form_widget(form.postIndex) }}
+                    <div class="form-error">
+                        {{ form_errors(form.postIndex) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1">
+                    {{ form_label(form.roles) }}
+                </div>
+                <div class="col-md-11">
+                    {{ form_widget(form.roles) }}
+                    <div class="form-error">
+                        {{ form_errors(form.roles) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-1"></div>
+                <div class="col-md-11 pl-5">
+                    {{ form_widget(form.isDeleted) }}
+                    {{ form_label(form.isDeleted) }}
+                    <div class="form-error">
+                        {{ form_errors(form.isDeleted) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="{{ path('admin_user_list') }}" class="btn btn-default btn-return">
+                        <i class="fas fa-arrow-alt-circle-left"></i>
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Save changes
+                    </button>
+                </div>
+                {% if user %}
+                    <a class="btn btn-while" data-toggle="modal" data-target="#approveDeleteModal">
+                        <i class="fas fa-itemes fa-sm"></i> Delete user
+                    </a>
+                {% endif %}
+            </div>
+            {{ form_rest(form)}}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

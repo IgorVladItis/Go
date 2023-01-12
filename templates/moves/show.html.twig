@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<title>Moves</title>
+
+{% block body %}
+    <h1>Moves</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ move.id }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ move.Color }}</td>
+            </tr>
+            <tr>
+                <th>X</th>
+                <td>{{ move.X }}</td>
+            </tr>
+            <tr>
+                <th>Y</th>
+                <td>{{ move.Y }}</td>
+            </tr>
+            <tr>
+                <th>User_id</th>
+                <td>{{ move.UserId }}</td>
+            </tr>
+            <tr>
+                <th>Game_id</th>
+                <td>{{ move.GameId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_moves_index') }}">back to list</a>
+
+    <a href="{{ path('app_moves_edit', {'id': move.id}) }}">edit</a>
+
+    {{ include('moves/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,73 @@
+<title>Admin</title>
+<head>
+    <link rel="stylesheet" href="{{ asset('StylesImgs/styles.css') }}">
+    <title>Admin</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<style>
+    .bg-gradient-primary {
+        background-image:linear-gradient(180deg, #9c2332 30%, #000000) !important;
+    }
+</style>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('admin_board_show') }}">
+        <div class="sidebar-brand-text mx-3">Admin panel</div>
+    </a>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ path('admin_board_show') }}">
+            <span>Dashboard</span></a>
+    </li>
+
+{#    <hr class="sidebar-divider">#}
+
+{#    <div class="sidebar-heading">#}
+{#        Sales#}
+{#    </div>#}
+
+{#    <hr class="sidebar-divider">#}
+
+{#    <div class="dropdown">#}
+{#        <button onclick="myFunction()" class="dropbtn">Products</button>#}
+{#        <div id="myDropdown" class="dropdown-content">#}
+{#            <a class="collapse-item" href="{{ path('admin_product_list') }}">All list</a>#}
+{#            <a class="collapse-item" href="{{ path('admin_product_add') }}">Add new</a>#}
+{#        </div>#}
+{#    </div>#}
+
+{#    <hr class="sidebar-divider">#}
+
+{#    <div class="sidebar-heading">#}
+{#        General#}
+{#    </div>#}
+
+{#    <li class="nav-item">#}
+{#        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"#}
+{#        aria-expanded="true" aria-controls="collapseUsers">#}
+{#            <i class="fas fa-fw fa-user"></i>#}
+{#            <span></span>#}
+{#        </a>#}
+{#        <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">#}
+{#            <div class="py-2 collapse-inner">#}
+{#                <a class="collapse-item" href="{{ path('admin_user_list') }}">All list</a>#}
+{#                <a class="collapse-item" href="{{ path('admin_user_add') }}">Add new</a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </li>#}
+
+    <a class="collapse-item" href="{{ path('admin_user_list') }}">All list users</a>
+    <a class="collapse-item" href="{{ path('admin_user_add') }}">Add new user</a>
+
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+
+<script
+        src="{{ asset('StylesImgs/adminSection.js') }}" type="text/javascript">
+</script>

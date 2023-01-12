@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<title>Moves index</title>
+
+{% block body %}
+    <h1>Moves index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Color</th>
+                <th>X</th>
+                <th>Y</th>
+                <th>User_id</th>
+                <th>Game_id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for move in moves %}
+            <tr>
+                <td>{{ move.id }}</td>
+                <td>{{ move.Color }}</td>
+                <td>{{ move.X }}</td>
+                <td>{{ move.Y }}</td>
+                <td>{{ move.UserId }}</td>
+                <td>{{ move.GameId }}</td>
+                <td>
+                    <a href="{{ path('app_moves_show', {'id': move.id}) }}">show</a>
+                    <a href="{{ path('app_moves_edit', {'id': move.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_moves_new') }}">Create new</a>
+{% endblock %}
